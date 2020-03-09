@@ -64,7 +64,7 @@ export default {
               this.$message.success("登录成功");
               this.setUserInfo(res.data.userInfo);
               this.$router.push({
-                name: "Home"
+                name: "Data"
               });
             } else {
               this.$message.error("用户名或密码不正确");

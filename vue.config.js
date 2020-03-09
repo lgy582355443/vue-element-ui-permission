@@ -7,5 +7,13 @@ module.exports = {
         prependData: `@import "~@/assets/style/global.scss";`
       }
     }
+  },
+  configureWebpack: config => {
+    if (process.env.NODE_ENV === "production") {
+      // 为生产环境修改配置...
+    } else {
+      // 为开发环境修改配置...
+      config.devtool = "cheap-module-eval-source-map";
+    }
   }
 };

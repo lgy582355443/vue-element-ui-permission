@@ -1,10 +1,12 @@
 <template>
-  <div class="table">这是table页</div>
+  <div class="401-main">
+    你的权限不够
+  </div>
 </template>
 
 <script>
 export default {
-  name: "Table",
+  name: "Page401",
   components: {},
   props: {},
   data() {

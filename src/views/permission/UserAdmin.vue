@@ -1,17 +1,16 @@
 <template>
-  <div class="user-main">
+  <div class="user-admin-main">
     用户管理
   </div>
 </template>
 
 <script>
 export default {
-name:"User",
+  name: "UserAdmin",
   components: {},
   props: {},
   data() {
-    return {
-    };
+    return {};
   },
   watch: {},
   computed: {},
@@ -20,5 +19,4 @@ name:"User",
   mounted() {}
 };
 </script>
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

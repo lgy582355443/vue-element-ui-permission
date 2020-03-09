@@ -30,7 +30,7 @@ export default {
   computed: {},
   methods: {},
   created() {
-    console.log('wobeizhixing');
+    console.log("wobeizhixing");
   },
   mounted() {}
 };

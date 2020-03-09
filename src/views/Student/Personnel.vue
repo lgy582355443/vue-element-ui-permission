@@ -1,10 +1,10 @@
 <template>
-  <div class="home-main">这是home页</div>
+  <div class="stu-Personnel-main">学员管理</div>
 </template>
 
 <script>
 export default {
-  name: "Home",
+  name: "StudentPersonnel",
   components: {},
   props: {},
   data() {

@@ -1,10 +1,12 @@
 <template>
-  <div class="role-admin-main">角色管理</div>
+  <div class="drom-main">
+    宿舍管理
+  </div>
 </template>
 
 <script>
 export default {
-  name: "RoleAdmin",
+  name: "Drom",
   components: {},
   props: {},
   data() {
