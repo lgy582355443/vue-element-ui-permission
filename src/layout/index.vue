@@ -5,7 +5,7 @@
       <sidebar class="layout-sidebar"></sidebar>
       <div class="layout-show">
         <tags-view class="layout-tags-view"></tags-view>
-        <router-view></router-view>
+        <router-view class="show-main"></router-view>
       </div>
     </div>
   </div>
@@ -29,9 +29,7 @@ export default {
   watch: {},
   computed: {},
   methods: {},
-  created() {
-    console.log("wobeizhixing");
-  },
+  created() {},
   mounted() {}
 };
 </script>
@@ -47,6 +45,10 @@ export default {
     padding-top: $headerHeight;
     .layout-show {
       flex: 1;
+      .show-main {
+        box-sizing: border-box;
+        padding: 20px;
+      }
     }
   }
 }

@@ -1,22 +1,27 @@
 <template>
   <div v-if="!item.hidden" class="siderbar-item-main">
-    <el-menu-item v-if="hasOneShowChild(item)" :index="resolvePath(onlyOneChild.path)">
+    <el-menu-item
+      v-if="hasOneShowChild(item)"
+      :index="resolvePath(onlyOneChild.path)"
+    >
       <i v-if="onlyOneChild.meta.icon" :class="onlyOneChild.meta.icon"></i>
       <span slot="title">{{ onlyOneChild.meta.title }}</span>
     </el-menu-item>
 
-    <el-submenu v-else :index="resolvePath(item.path)">
-      <template slot="title">
-        <i v-if="item.meta.icon" :class="item.meta.icon"></i>
-        <span slot="title">{{ item.meta.title }}</span>
-      </template>
-      <siderbar-item
-        v-for="child in item.children"
-        :key="child.name"
-        :item="child"
-        :base-path="resolvePath(child.path)"
-      ></siderbar-item>
-    </el-submenu>
+    <template v-else>
+      <el-submenu :index="resolvePath(item.path)" popper-append-to-body>
+        <template slot="title">
+          <i v-if="item.meta.icon" :class="item.meta.icon"></i>
+          <span slot="title">{{ item.meta.title }}</span>
+        </template>
+        <siderbar-item
+          v-for="child in item.children"
+          :key="child.name"
+          :item="child"
+          :base-path="resolvePath(child.path)"
+        ></siderbar-item>
+      </el-submenu>
+    </template>
   </div>
 </template>
 

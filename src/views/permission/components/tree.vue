@@ -7,18 +7,19 @@
       show-checkbox
       ref="tree"
     ></el-tree>
-    <div class="buttons">
-      <el-button @click="getCheckedKeys">通过 key 获取</el-button>
-    </div>
   </div>
 </template>
 
 <script>
-import asyncRoutes from "../../router/asyncRoutes";
+import asyncRoutes from "@/router/asyncRoutes";
 export default {
   name: "MenuAdmin",
   components: {},
-  props: {},
+  props: {
+    checkedKeys: {
+      type: Array
+    }
+  },
   data() {
     return {
       asyncRoutes,
@@ -34,12 +35,21 @@ export default {
   },
   watch: {},
   computed: {},
+  created() {
+    this.getTreeData();
+  },
+  mounted() {
+    console.log(this.checkedKeys);
+    this.setCheckedKeys(this.checkedKeys);
+  },
   methods: {
     getCheckedKeys() {
       this.routeKey = this.$refs.tree
         .getCheckedKeys()
         .concat(this.$refs.tree.getHalfCheckedKeys());
-      console.log(this.routeKey);
+    },
+    setCheckedKeys(keyArr) {
+      this.$refs.tree.setCheckedKeys(keyArr);
     },
     //筛选出选中的路由表
     filterAsyncRoutes(routes, treeKey) {
@@ -67,11 +77,7 @@ export default {
         }
       });
     }
-  },
-  created() {
-    this.getTreeData();
-  },
-  mounted() {}
+  }
 };
 </script>
 <style lang="scss" scoped></style>

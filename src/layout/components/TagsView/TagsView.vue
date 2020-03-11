@@ -1,17 +1,24 @@
 <template>
   <div class="tags-view-main">
-    <div class="icon navbar-switch" @click="closeNav">
+    <div
+      :class="[{ isClose: isCollapse }, 'icon', 'navbar-switch']"
+      @click="closeNav"
+    >
       <i class="el-icon-s-fold"></i>
     </div>
+    <tags-breadcrumb></tags-breadcrumb>
   </div>
 </template>
 
 <script>
 import { layoutMixin } from "../../../mixins/layout.js";
+import TagsBreadcrumb from "./Breadcrumb";
 export default {
   name: "TagsView",
   mixins: [layoutMixin],
-  components: {},
+  components: {
+    TagsBreadcrumb
+  },
   props: {},
   data() {
     return {};
@@ -37,6 +44,10 @@ export default {
     font-size: 20px;
     line-height: 50px;
     margin: 0 10px;
+    transition: all 0.6s;
+    &.isClose {
+      transform: rotate(180deg);
+    }
   }
 }
 </style>

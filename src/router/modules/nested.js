@@ -6,7 +6,7 @@ const nestedRouter = {
   component: Layout,
   redirect: "/nested/menu1/menu1-1",
   meta: {
-    title: "menu1",
+    title: "Nested",
     icon: "el-icon-menu"
   },
   children: [

@@ -2,9 +2,9 @@ import { mapGetters, mapActions } from "vuex";
 
 export const userMixin = {
   computed: {
-    ...mapGetters(["userInfo"])
+    ...mapGetters(["userInfo", "accessRoutes", "roleMenu"])
   },
   methods: {
-    ...mapActions(["setUserInfo"])
+    ...mapActions(["setUserInfo", "setAccessRoutes", "setRoleMenu"])
   }
 };

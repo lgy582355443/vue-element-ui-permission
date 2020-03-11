@@ -7,6 +7,31 @@ function login(data) {
     data
   });
 }
+
+function getUserList() {
+  return request({
+    url: "/vue-admin/userList",
+    method: "get"
+  });
+}
+
+function getRoleList() {
+  return request({
+    url: "/vue-admin/roleList",
+    method: "get"
+  });
+}
+
+function getRoleInfo(data) {
+  return request({
+    url: "/vue-admin/roleInfo",
+    method: "get",
+    data
+  });
+}
 export default {
-  login
+  login,
+  getUserList,
+  getRoleList,
+  getRoleInfo
 };

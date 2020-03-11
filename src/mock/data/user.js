@@ -1,4 +1,4 @@
-export let user = [
+export const user = [
   {
     id: 1,
     userName: "admin",
@@ -7,20 +7,14 @@ export let user = [
   },
   {
     id: 2,
-    userName: "xiaoming",
+    userName: "editer",
     password: "123456",
-    role: "manager"
+    role: "editer"
   },
   {
     id: 3,
-    userName: "xiaohong",
+    userName: "visitor",
     password: "123456",
-    role: "employee"
-  },
-  {
-    id: 4,
-    userName: "banzhang",
-    password: "123456",
-    role: "squadLeader"
+    role: "visitor"
   }
 ];

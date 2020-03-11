@@ -13,7 +13,7 @@ const asyncRoutes = [
     component: Layout,
     meta: {
       title: "主面板",
-      icon: "el-icon-user-solid"
+      icon: "el-icon-s-data"
     },
     children: [
       {
@@ -33,14 +33,15 @@ const asyncRoutes = [
   // dashboardRouter,
   permissionRouter,
   studentRouter,
-  nestedRouter
-  // {
-  //   path: "*",
-  //   redirect: "/404",
-  //   meta: {
-  //     hidden: true
-  //   }
-  // }
+  nestedRouter,
+  {
+    path: "*",
+    redirect: "/404",
+    hidden: true,
+    meta: {
+      noRoute: true
+    }
+  }
 ];
 
 export default asyncRoutes;

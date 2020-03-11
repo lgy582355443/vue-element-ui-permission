@@ -1,20 +1,32 @@
 const TokenKey = "Token";
 
 export function getToken() {
-  const Token = window.localStorage.getItem(TokenKey);
-  if (Token) {
-    return JSON.parse(Token);
+  return getStorage(TokenKey);
+}
+
+export function setToken(token) {
+  setStorage(TokenKey, token);
+}
+
+export function removeToken() {
+  removeStorage(TokenKey);
+}
+
+export function getStorage(key) {
+  const data = window.localStorage.getItem(key);
+  if (data) {
+    return JSON.parse(data);
   } else {
     return null;
   }
 }
 
-export function setToken(token) {
+export function setStorage(key, data) {
   //只能存字符串
-  const Token = JSON.stringify(token);
-  window.localStorage.setItem(TokenKey, Token);
+  const dataStr = JSON.stringify(data);
+  window.localStorage.setItem(key, dataStr);
 }
 
-export function removeToken() {
-  return window.localStorage.removeItem(TokenKey);
+export function removeStorage(key) {
+  return window.localStorage.removeItem(key);
 }
