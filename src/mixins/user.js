@@ -5,6 +5,6 @@ export const userMixin = {
     ...mapGetters(["userInfo", "accessRoutes", "roleMenu"])
   },
   methods: {
-    ...mapActions(["setUserInfo", "setAccessRoutes", "setRoleMenu"])
+    ...mapActions(["setUserInfo", "setAccessRoutes", "setRoleMenu","logout"])
   }
 };

@@ -2,7 +2,12 @@ import Layout from "../layout/index.vue";
 import studentRouter from "./modules/student";
 import nestedRouter from "./modules/nested";
 import permissionRouter from "./modules/permission";
-// import dashboardRouter from "./modules/dashboard";
+
+/*
+meta里面的属性说明：
+hidden:true         说明不动态渲染在侧边栏显示，动态渲染在tree组件显示
+noRoute: true       说明不动态渲染在tree组件和侧边栏显示
+*/
 
 //存放的是需要权限的路由
 const asyncRoutes = [
@@ -30,7 +35,6 @@ const asyncRoutes = [
       }
     ]
   },
-  // dashboardRouter,
   permissionRouter,
   studentRouter,
   nestedRouter,

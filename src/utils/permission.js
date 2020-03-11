@@ -1,16 +1,16 @@
 //根据路由名筛选出的路由表
-export function filterAsyncRoutes(routes, treeKey) {
-  let treeArr = [...treeKey];
+export function filterAsyncRoutes(routes, routeKey) {
+  let keyArr = [...routeKey];
   const res = [];
   routes.forEach(route => {
     const tmp = {
       ...route
     };
-    const key = treeArr.find(item => item == route.name);
+    const key = keyArr.find(item => item == route.name);
     if (key) {
-      treeArr = treeArr.filter(item => item !== key);
+      keyArr = keyArr.filter(item => item !== key);
       if (tmp.children) {
-        tmp.children = filterAsyncRoutes(tmp.children, treeArr);
+        tmp.children = filterAsyncRoutes(tmp.children, keyArr);
       }
       res.push(tmp);
     }

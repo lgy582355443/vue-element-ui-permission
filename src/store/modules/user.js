@@ -14,17 +14,23 @@ const user = {
     },
     SET_ROLE_MENU(state, roleMenu) {
       state.roleMenu = roleMenu;
-    }
+    },
   },
   actions: {
     setRoleMenu({ commit }, roleMenu) {
       return commit("SET_ROLE_MENU", roleMenu);
     },
-    setUserInfo: ({ commit }, userInfo) => {
+    setUserInfo({ commit }, userInfo) {
       return commit("SET_USER_INFO", userInfo);
     },
-    setAccessRoutes: ({ commit }, accessRoutes) => {
+    setAccessRoutes({ commit }, accessRoutes){
       return commit("SET_ACCESS_ROUTES", accessRoutes);
+    },
+    logout({commit}){
+      commit("SET_ROLE_MENU",null );
+      commit("SET_USER_INFO", {});
+      window.localStorage.removeItem("Token");
+      window.localStorage.removeItem("userInfo");
     }
   }
 };

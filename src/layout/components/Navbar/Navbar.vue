@@ -1,13 +1,26 @@
 <template>
   <div class="navbar-main">
     <div class="logo">logo</div>
-    <div class="user">admin</div>
+
+    <el-dropdown placement="bottom" class="user" trigger="click">
+      <span class="el-dropdown-link">
+        {{userInfo.userName}}
+        <i class="el-icon-arrow-down el-icon--right"></i>
+      </span>
+      <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item command="a">个人信息</el-dropdown-item>
+        <el-dropdown-item  @click.native="doLogout">退出登录</el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
   </div>
 </template>
 
 <script>
+import { userMixin } from "@/mixins/user.js";
+import { resetRouter } from "@/router/index.js";
 export default {
   name: "Navbar",
+  mixins: [userMixin],
   components: {},
   props: {},
   data() {
@@ -15,7 +28,14 @@ export default {
   },
   watch: {},
   computed: {},
-  methods: {},
+  methods: {
+    doLogout(){
+      this.logout();
+      //重置vue-router
+      resetRouter();
+      this.$router.push({name:"Login"});
+    }
+  },
   created() {},
   mounted() {}
 };
@@ -33,7 +53,8 @@ export default {
     font-size: 30px;
     line-height: 50px;
     margin-left: 20px;
-    color: aquamarine;
+    color: #0e5fbb;
+    font-weight: bolder;
   }
   .user {
     position: absolute;
@@ -42,7 +63,9 @@ export default {
     height: 100%;
     margin-right: 20px;
     line-height: 50px;
-    color: aquamarine;
+    font-size: 18px;
+    color: #0e5fbb;
+    cursor: pointer;
   }
 }
 </style>
