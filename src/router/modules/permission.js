@@ -11,18 +11,6 @@ const permissionRouter = {
   },
   children: [
     {
-      path: "menu",
-      name: "MenuAdmin",
-      component: () =>
-        import(
-          /* webpackChunkName: "MenuAdmin" */
-          "../../views/permission/MenuAdmin.vue"
-        ),
-      meta: {
-        title: "菜单管理"
-      }
-    },
-    {
       path: "role",
       name: "RoleAdmin",
       component: () =>

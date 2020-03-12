@@ -1,5 +1,4 @@
-export const role = [
-  {
+export const role = [{
     name: "admin",
     title: "超级管理员",
     postscript: "管理所有菜单",
@@ -7,7 +6,6 @@ export const role = [
       "Main",
       "Dashboard",
       "Permission",
-      "MenuAdmin",
       "RoleAdmin",
       "UserAdmin",
       "Student",
@@ -29,8 +27,17 @@ export const role = [
     name: "editer",
     title: "编辑",
     postscript: "学生管理",
-    menu: ["Main", "Dashboard", "Student", "Personnel", "Class", "Drom",
-    "redirect404"]
+    menu: ["Main",
+      "Dashboard",
+      "Student",
+      "Permission",
+      "RoleAdmin",
+      "UserAdmin",
+      "Personnel",
+      "Class",
+      "Drom",
+      "redirect404"
+    ]
   },
   {
     name: "visitor",
@@ -39,6 +46,9 @@ export const role = [
     menu: [
       "Main",
       "Dashboard",
+      "Permission",
+      "RoleAdmin",
+      "UserAdmin",
       "Nested",
       "Menu1",
       "Menu1-1",

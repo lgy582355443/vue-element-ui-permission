@@ -7,13 +7,13 @@ export const user = [
   },
   {
     id: 2,
-    userName: "editer",
+    userName: "zhangsan",
     password: "123456",
     role: "editer"
   },
   {
     id: 3,
-    userName: "visitor",
+    userName: "lisi",
     password: "123456",
     role: "visitor"
   }

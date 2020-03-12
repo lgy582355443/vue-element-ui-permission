@@ -30,6 +30,14 @@ function getRoleInfo(data) {
   });
 }
 
+function updataUser(data) {
+  return request({
+    url: "/vue-admin/updataUser",
+    method: "post",
+    data
+  });
+}
+
 function updataRole(data) {
   return request({
     url: "/vue-admin/updataRole",
@@ -42,5 +50,6 @@ export default {
   getUserList,
   getRoleList,
   getRoleInfo,
+  updataUser,
   updataRole
 };

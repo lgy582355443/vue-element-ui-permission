@@ -1,6 +1,7 @@
 <template>
   <div class="user-admin-main">
     <el-card class="box-card">
+      <el-button class="add-btn" type="primary" size="small">添加用户</el-button>
       <el-table :data="userList" border stripe>
         <el-table-column prop="userName" label="用户名"></el-table-column>
         <el-table-column prop="role" label="对应角色"></el-table-column>
@@ -8,10 +9,11 @@
           <template slot-scope="scope">
             <el-button
               type="primary"
-              icon="el-icon-edit"
+              :disabled="scope.row.userName == 'admin'"
               size="small"
               @click="showEdit(scope.row)"
             >编辑</el-button>
+            <el-button type="danger" :disabled="scope.row.userName == 'admin'" size="small">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -70,17 +72,21 @@ export default {
       this.editUserVisible = true;
     },
     updataRole() {
-      userApi.updataRole(this.currentUser).then(res => {
+      userApi.updataUser(this.currentUser).then(res => {
         if (res.data.code == 0) {
           //若修改的是当前登录的账号，则修改路由
-          if(this.currentUser.userName == this.userInfo.userName){
+          if (this.currentUser.userName == this.userInfo.userName) {
             this.setUserInfo(res.data.userInfo).then(() => {
-              this.updataPermissions();
-              this.getUserList();
+              userApi.getRoleInfo({ roleName: this.userInfo.role }).then(res => {
+                  if (res.data.code == 0) {
+                    this.updataPermissions(res.data.roleInfo.menu);
+                    this.getUserList();
+                    this.editUserVisible = false;
+                    this.$message.success("更改成功");
+                  }
+                });
             });
           }
-          this.editUserVisible = false;
-          this.$message.success("更改成功");
         } else {
           this.$message.error("更改失败");
         }
@@ -107,4 +113,8 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.add-btn {
+  margin: 10px 0;
+}
+</style>

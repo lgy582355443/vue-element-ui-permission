@@ -1,4 +1,3 @@
-import userApi from "@/api/user/user";
 import { resetRouter } from "@/router/index";
 import asyncRoutes from "@/router/asyncRoutes";
 import { filterAsyncRoutes } from "@/utils/permission";
@@ -41,17 +40,12 @@ const user = {
       window.localStorage.removeItem("userInfo");
     },
     //获取权限路由
-    updataPermissions({ state,commit }) {
-      userApi.getRoleInfo({ roleName:state.userInfo.role }).then(res => {
-        if (res.data.code == 0) {
-          console.log(res);
-          commit("SET_ROLE_MENU", res.data.roleInfo.menu);
-          const accessRoutes = filterAsyncRoutes(asyncRoutes, state.roleMenu);
-          commit("SET_ACCESS_ROUTES", accessRoutes);
-          resetRouter();
-          router.addRoutes(accessRoutes);
-        }
-      });
+    updataPermissions({commit },menu) {   
+      commit("SET_ROLE_MENU", menu);
+      const accessRoutes = filterAsyncRoutes(asyncRoutes, menu);
+      commit("SET_ACCESS_ROUTES", accessRoutes);
+      resetRouter();
+      router.addRoutes(accessRoutes);
     }
   }
 };
