@@ -40,6 +40,7 @@ const asyncRoutes = [
   nestedRouter,
   {
     path: "*",
+    name:"redirect404",
     redirect: "/404",
     hidden: true,
     meta: {

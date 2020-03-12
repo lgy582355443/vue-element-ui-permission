@@ -1,5 +1,5 @@
 <template>
-  <div :class="[{ isCollapse: isCollapse }, 'sidebar-main']" ref="sidebarMain">
+  <div class="sidebar-main">
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         class="el-menu-vertical"
@@ -52,12 +52,7 @@ export default {
 <style lang="scss" scoped>
 .sidebar-main {
   height: 100%;
-  width: $sidebarMax;
-  border: 1px solid #dcdfe6;
+  width: 100%;
   overflow: hidden;
-  transition: all 0.2s;
-  &.isCollapse {
-    width: 60px;
-  }
 }
 </style>

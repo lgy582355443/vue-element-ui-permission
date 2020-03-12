@@ -27,8 +27,6 @@
 <script>
 import userApi from "../../api/user/user.js";
 import { userMixin } from "../../mixins/user.js";
-// import asyncRoutes from "@/router/asyncRoutes";
-// import { filterAsyncRoutes } from "../../utils/permission";
 export default {
   name: "Login",
   mixins: [userMixin],
@@ -65,18 +63,9 @@ export default {
             if (res.data.code == 0) {
               this.$message.success("登录成功");
               this.setUserInfo(res.data.userInfo);
-              // const { role } = res.data.userInfo;
-              // userApi.getRoleInfo({ roleName: role }).then(res => {
-              //   const roleMenu = res.data.roleInfo.menu;
-              //   //筛选出角色对应的路由
-              //   const accessRoutes = filterAsyncRoutes(asyncRoutes, roleMenu);
-              //   //动态添加路由
-              //   this.$router.addRoutes(accessRoutes);
-              //   this.setAccessRoutes(accessRoutes);
               this.$router.push({
                 path: "/"
               });
-              // });
             } else {
               this.$message.error("用户名或密码不正确");
             }

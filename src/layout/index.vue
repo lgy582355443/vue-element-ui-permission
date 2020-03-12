@@ -2,7 +2,9 @@
   <div class="layout-main">
     <navbar></navbar>
     <div class="layout-content">
-      <sidebar class="layout-sidebar"></sidebar>
+      <sidebar
+        :class="[{ isCollapse: isCollapse }, 'layout-sidebar']"
+      ></sidebar>
       <div class="layout-show">
         <tags-view class="layout-tags-view"></tags-view>
         <router-view class="show-main"></router-view>
@@ -15,6 +17,7 @@
 import Navbar from "./components/Navbar/Navbar.vue";
 import Sidebar from "./components/Sidebar/Sidebar.vue";
 import TagsView from "./components/TagsView/TagsView.vue";
+import { mapGetters } from "vuex";
 export default {
   name: "Layout",
   components: {
@@ -27,7 +30,9 @@ export default {
     return {};
   },
   watch: {},
-  computed: {},
+  computed: {
+    ...mapGetters(["isCollapse"])
+  },
   methods: {},
   created() {},
   mounted() {}
@@ -43,8 +48,18 @@ export default {
     height: 100%;
     width: 100%;
     padding-top: $headerHeight;
+    .layout-sidebar {
+      height: 100%;
+      flex: 0 0 $sidebarMax;
+      border: $mainBorder;
+      transition: all 0.2s;
+      &.isCollapse {
+        flex: 0 0 $sidebarMin;
+      }
+    }
     .layout-show {
       flex: 1;
+      overflow: auto;
       .show-main {
         box-sizing: border-box;
         padding: 20px;

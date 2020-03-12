@@ -2,37 +2,23 @@
   <div class="user-admin-main">
     <el-card class="box-card">
       <el-table :data="userList" border stripe>
-        <el-table-column
-          prop="userName"
-          label="用户名"
-          width="180"
-        ></el-table-column>
-        <el-table-column
-          prop="role"
-          label="对应角色"
-          width="400"
-        ></el-table-column>
-        <el-table-column label="操作" width="100">
+        <el-table-column prop="userName" label="用户名"></el-table-column>
+        <el-table-column prop="role" label="对应角色"></el-table-column>
+        <el-table-column label="操作">
           <template slot-scope="scope">
             <el-button
               type="primary"
               icon="el-icon-edit"
               size="small"
               @click="showEdit(scope.row)"
-              >编辑</el-button
-            >
+            >编辑</el-button>
           </template>
         </el-table-column>
       </el-table>
     </el-card>
     <!-- 弹窗 -->
     <el-dialog title="编辑" :visible.sync="editUserVisible">
-      <el-form
-        :model="currentUser"
-        ref="ruleForm"
-        label-width="100px"
-        class="user-ruleForm"
-      >
+      <el-form :model="currentUser" ref="ruleForm" label-width="100px" class="user-ruleForm">
         <el-form-item label="修改用户角色">
           <el-select v-model="currentUser.role" placeholder="请选择角色">
             <el-option
@@ -46,18 +32,18 @@
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="editUserVisible = false">取 消</el-button>
-        <el-button type="primary" @click="editUserVisible = false"
-          >确 定</el-button
-        >
+        <el-button type="primary" @click="updataRole">确 定</el-button>
       </span>
     </el-dialog>
   </div>
 </template>
 
 <script>
+import { userMixin } from "@/mixins/user";
 import userApi from "@/api/user/user";
 export default {
   name: "UserAdmin",
+  mixins: [userMixin],
   components: {},
   props: {},
   data() {
@@ -83,6 +69,23 @@ export default {
       this.currentUser = user;
       this.editUserVisible = true;
     },
+    updataRole() {
+      userApi.updataRole(this.currentUser).then(res => {
+        if (res.data.code == 0) {
+          //若修改的是当前登录的账号，则修改路由
+          if(this.currentUser.userName == this.userInfo.userName){
+            this.setUserInfo(res.data.userInfo).then(() => {
+              this.updataPermissions();
+              this.getUserList();
+            });
+          }
+          this.editUserVisible = false;
+          this.$message.success("更改成功");
+        } else {
+          this.$message.error("更改失败");
+        }
+      });
+    },
     getUserList() {
       userApi.getUserList().then(res => {
         if (res.data.code == 0) {
@@ -97,7 +100,7 @@ export default {
         if (res.data.code == 0) {
           this.roleList = res.data.role;
         } else {
-          this.$Message.error("获取失败");
+          this.$message.error("获取失败");
         }
       });
     }

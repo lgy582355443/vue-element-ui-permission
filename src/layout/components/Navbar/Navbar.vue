@@ -4,12 +4,12 @@
 
     <el-dropdown placement="bottom" class="user" trigger="click">
       <span class="el-dropdown-link">
-        {{userInfo.userName}}
+        {{ userInfo.userName }}
         <i class="el-icon-arrow-down el-icon--right"></i>
       </span>
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item command="a">个人信息</el-dropdown-item>
-        <el-dropdown-item  @click.native="doLogout">退出登录</el-dropdown-item>
+        <el-dropdown-item @click.native="doLogout">退出登录</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
   </div>
@@ -29,11 +29,11 @@ export default {
   watch: {},
   computed: {},
   methods: {
-    doLogout(){
+    doLogout() {
       this.logout();
       //重置vue-router
       resetRouter();
-      this.$router.push({name:"Login"});
+      this.$router.push({ name: "Login" });
     }
   },
   created() {},

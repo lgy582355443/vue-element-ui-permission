@@ -2,18 +2,10 @@
   <div class="role-admin-main">
     <el-card class="box-card">
       <el-table :data="roleList" border stripe>
-        <el-table-column prop="name" label="角色" width="180"></el-table-column>
-        <el-table-column
-          prop="title"
-          label="角色名称"
-          width="180"
-        ></el-table-column>
-        <el-table-column
-          prop="postscript"
-          label="备注"
-          width="400"
-        ></el-table-column>
-        <el-table-column label="操作" width="100">
+        <el-table-column prop="name" label="角色"></el-table-column>
+        <el-table-column prop="title" label="角色名称"></el-table-column>
+        <el-table-column prop="postscript" label="备注"></el-table-column>
+        <el-table-column label="操作">
           <template slot-scope="scope">
             <el-button
               type="primary"

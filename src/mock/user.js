@@ -8,10 +8,10 @@ Mock.setup({
   timeout: 200 - 500
 });
 //登录
-Mock.mock(baseURL + "/vue-admin/login", "post", function(data) {
-  const params = JSON.parse(data.body);
+Mock.mock(baseURL + "/vue-admin/login", "post", function(params) {
+  const data = JSON.parse(params.body);
   const userInfo = user.find(
-    item => item.userName == params.userName && item.password == params.password
+    item => item.userName == data.userName && item.password == data.password
   );
   if (userInfo) {
     return {
@@ -41,11 +41,20 @@ Mock.mock(baseURL + "/vue-admin/roleList", "get", {
 Mock.mock(RegExp(baseURL + "/vue-admin/roleInfo" + ".*"), "get", function(
   data
 ) {
-  const { roleName } = JSON.parse(data.body);
+  const {roleName}  = JSON.parse(data.body);
   let roleInfo = role.find(item => item.name == roleName);
-  console.log(roleName, roleInfo);
   return {
     roleInfo,
+    code: 0
+  };
+});
+//更改个人角色
+Mock.mock(baseURL + "/vue-admin/updataRole", "post", function(params) {
+  const data = JSON.parse(params.body);
+  let userInfo = user.find(item => item.userName == data.userName);
+  userInfo.role = data.role;
+  return {
+    userInfo,
     code: 0
   };
 });

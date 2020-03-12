@@ -21,19 +21,21 @@ export const role = [
       "Menu1-2-1",
       "Menu1-2-2",
       "Menu1-3",
-      "Menu2"
+      "Menu2",
+      "redirect404"
     ]
   },
   {
     name: "editer",
     title: "编辑",
-    postscript: "管理学生管理",
-    menu: ["Main", "Dashboard", "Student", "Personnel", "Class", "Drom"]
+    postscript: "学生管理",
+    menu: ["Main", "Dashboard", "Student", "Personnel", "Class", "Drom",
+    "redirect404"]
   },
   {
     name: "visitor",
     title: "游客",
-    postscript: "仅体验功能",
+    postscript: "Nested",
     menu: [
       "Main",
       "Dashboard",
@@ -44,7 +46,8 @@ export const role = [
       "Menu1-2-1",
       "Menu1-2-2",
       "Menu1-3",
-      "Menu2"
+      "Menu2",
+      "redirect404"
     ]
   }
 ];
