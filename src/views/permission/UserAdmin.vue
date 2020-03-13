@@ -1,8 +1,8 @@
 <template>
   <div class="user-admin-main">
-    <el-card class="box-card">
+    <el-card class="box-card" shadow="hover">
       <el-button class="add-btn" type="primary" size="small">添加用户</el-button>
-      <el-table :data="userList" border stripe>
+      <el-table :data="userList" border>
         <el-table-column prop="userName" label="用户名"></el-table-column>
         <el-table-column prop="role" label="对应角色"></el-table-column>
         <el-table-column label="操作">
@@ -10,10 +10,10 @@
             <el-button
               type="primary"
               :disabled="scope.row.userName == 'admin'"
-              size="small"
+               size="mini"
               @click="showEdit(scope.row)"
             >编辑</el-button>
-            <el-button type="danger" :disabled="scope.row.userName == 'admin'" size="small">删除</el-button>
+            <el-button type="danger" :disabled="scope.row.userName == 'admin'" size="mini">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -77,7 +77,9 @@ export default {
           //若修改的是当前登录的账号，则修改路由
           if (this.currentUser.userName == this.userInfo.userName) {
             this.setUserInfo(res.data.userInfo).then(() => {
-              userApi.getRoleInfo({ roleName: this.userInfo.role }).then(res => {
+              userApi
+                .getRoleInfo({ roleName: this.userInfo.role })
+                .then(res => {
                   if (res.data.code == 0) {
                     this.updataPermissions(res.data.roleInfo.menu);
                     this.getUserList();
@@ -116,5 +118,9 @@ export default {
 <style lang="scss" scoped>
 .add-btn {
   margin: 10px 0;
+}
+.el-table {
+  border-top: 1px solid #ebeef5;
+  border-left: 1px solid #ebeef5;
 }
 </style>

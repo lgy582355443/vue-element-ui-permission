@@ -1,6 +1,6 @@
 <template>
   <div class="menu-admin-main">
-    <el-tree :props="props" node-key="name" :data="treeData" show-checkbox ref="tree"></el-tree>
+    <el-tree :props="props" node-key="name" :data="asyncRoutes" show-checkbox ref="tree"></el-tree>
   </div>
 </template>
 
@@ -17,44 +17,44 @@ export default {
   data() {
     return {
       asyncRoutes,
-      treeData: null,
       routeKey: null,
       props: {
         children: "children",
         label: data => {
           return data.meta.title;
+        },
+        disabled: data => {
+          if (data.meta.disabled) {
+            return true;
+          } else {
+            return false;
+          }
         }
       }
     };
   },
   watch: {},
   computed: {},
-  created() {
-    this.getTreeData();
-  },
+  created() {},
   mounted() {
     this.setCheckedKeys(this.checkedKeys);
   },
   methods: {
     //获取目前勾选的节点的key
     getCheckedKeys() {
-      const routeKey = this.$refs.tree
-        .getCheckedKeys()
-        .concat(this.$refs.tree.getHalfCheckedKeys());
-        this.routeKey = routeKey;
-        return routeKey;
+      //勾选的key
+      const treeKey = this.$refs.tree.getCheckedKeys();
+      //半勾选的key
+      const halfKey = this.$refs.tree.getHalfCheckedKeys();
+      const menu = [].concat(treeKey, halfKey);
+      return {
+        treeKey,
+        menu
+      }
     },
     //通过 keys 设置目前勾选的节点
     setCheckedKeys(keyArr) {
       this.$refs.tree.setCheckedKeys(keyArr);
-    },
-    //筛选出渲染tree组件的数据
-    getTreeData() {
-      this.treeData = this.asyncRoutes.filter(item => {
-        if (!item.meta.noRoute) {
-          return item;
-        }
-      });
     }
   }
 };

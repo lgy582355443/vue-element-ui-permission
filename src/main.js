@@ -5,7 +5,7 @@ import store from "./store";
 import "./permission.js";
 import "./plugins/element-ui.js";
 import "./assets/style/global.scss";
-import "./mock/user";
+import "./mock/index";
 Vue.config.productionTip = false;
 
 new Vue({

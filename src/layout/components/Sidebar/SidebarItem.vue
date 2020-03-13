@@ -1,11 +1,8 @@
 <template>
-  <div v-if="!item.hidden" class="siderbar-item-main">
-    <el-menu-item
-      v-if="hasOneShowChild(item)"
-      :index="resolvePath(onlyOneChild.path)"
-    >
-      <i v-if="onlyOneChild.meta.icon" :class="onlyOneChild.meta.icon"></i>
-      <span slot="title">{{ onlyOneChild.meta.title }}</span>
+  <div v-if="!item.meta.hidden" class="siderbar-item-main">
+    <el-menu-item v-if="hasOneShowChild(menuItem)" :index="resolvePath(menuItem.path)">
+      <i v-if="menuItem.meta.icon" :class="menuItem.meta.icon"></i>
+      <span slot="title">{{ menuItem.meta.title }}</span>
     </el-menu-item>
 
     <template v-else>
@@ -42,7 +39,7 @@ export default {
   },
   data() {
     return {
-      onlyOneChild: null
+      menuItem: null
     };
   },
   watch: {},
@@ -51,15 +48,25 @@ export default {
     //判断是否只有一个子路由。
     hasOneShowChild(item) {
       if (!item.children) {
-        this.onlyOneChild = item;
         return true;
       }
       if (item.children.length == 1) {
-        this.onlyOneChild = item.children[0];
-        this.onlyOneChild.meta.icon = item.meta.icon;
         return true;
       }
       return false;
+    },
+    getMenuItem() {
+      if (!this.item.children) {
+        this.menuItem = this.item;
+        return
+      }
+      if (this.item.children.length == 1) {
+        this.menuItem = this.item.children[0];
+        this.menuItem.meta.icon = this.item.meta.icon;
+        return
+      }
+      this.menuItem = this.item;
+      return
     },
     resolvePath(routePath) {
       if (!this.item.children) {
@@ -69,7 +76,9 @@ export default {
       return path.resolve(this.basePath, routePath);
     }
   },
-  created() {},
+  created() {
+    this.getMenuItem();
+  },
   mounted() {}
 };
 </script>

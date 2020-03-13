@@ -1,18 +1,8 @@
-import Mock from "mockjs";
-import {
-  user
-} from "./data/user";
-import {
-  role
-} from "./data/role";
-
-const baseURL = process.env.VUE_APP_BASE_URL;
+import { user } from "./data/user";
+import { role } from "./data/role";
 const Token = "Token";
-Mock.setup({
-  timeout: 200 - 500
-});
-//登录
-Mock.mock(baseURL + "/vue-admin/login", "post", function (params) {
+//登录login
+function login(params) {
   const data = JSON.parse(params.body);
   const userInfo = user.find(
     item => item.userName == data.userName && item.password == data.password
@@ -30,19 +20,23 @@ Mock.mock(baseURL + "/vue-admin/login", "post", function (params) {
       msg: "登录失败"
     };
   }
-});
+}
 //用户列表
-Mock.mock(baseURL + "/vue-admin/userList", "get", {
-  user,
-  code: 0
-});
+function userList() {
+  return {
+    user,
+    code: 0
+  }
+}
 //角色列表
-Mock.mock(baseURL + "/vue-admin/roleList", "get", {
-  role,
-  code: 0
-});
+function roleList() {
+  return {
+    role,
+    code: 0
+  }
+}
 //获取角色信息
-Mock.mock(RegExp(baseURL + "/vue-admin/roleInfo" + ".*"), "get", function (
+function roleInfo(
   params
 ) {
   const {
@@ -53,24 +47,34 @@ Mock.mock(RegExp(baseURL + "/vue-admin/roleInfo" + ".*"), "get", function (
     roleInfo,
     code: 0
   };
-});
-//更改用户对应的角色
-Mock.mock(baseURL + "/vue-admin/updataUser", "post", function (params) {
-  const data = JSON.parse(params.body);
-  let userInfo = user.find(item => item.userName == data.userName);
-  userInfo.role = data.role;
+}
+//更改用户
+function updataUser(params) {
+  const newUser = JSON.parse(params.body);
+  let userInfo = user.find(item => item.userName == newUser.userName);
+  userInfo.role = user.role;  //这样写是为了同时修改 /mock/data 文件夹里的数据
   return {
     userInfo,
     code: 0
   };
-});
-//修改角色对应的菜单
-Mock.mock(baseURL + "/vue-admin/updataRole", "post", function (params) {
-  const { name, menu } = JSON.parse(params.body);
-  let roleInfo = role.find(item => item.name == name);
-  roleInfo.menu = menu;
+}
+//修改角色
+function updataRole(params) {
+  const newRole = JSON.parse(params.body);
+  let roleInfo = role.find(item => item.name == newRole.name);
+  roleInfo.menu = newRole.menu;
+  roleInfo.treeKey = newRole.treeKey;
   return {
     roleInfo,
     code: 0
-  }
-})
+  };
+}
+
+export default {
+  login,
+  userList,
+  roleList,
+  roleInfo,
+  updataUser,
+  updataRole
+}

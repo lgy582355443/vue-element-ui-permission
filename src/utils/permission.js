@@ -3,9 +3,7 @@ export function filterAsyncRoutes(routes, routeKey) {
   let keyArr = [...routeKey];
   const res = [];
   routes.forEach(route => {
-    const tmp = {
-      ...route
-    };
+    const tmp = { ...route };
     const key = keyArr.find(item => item == route.name);
     if (key) {
       keyArr = keyArr.filter(item => item !== key);

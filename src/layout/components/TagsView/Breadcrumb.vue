@@ -1,9 +1,11 @@
 <template>
   <div class="tags-Breadcrumb-main">
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item v-for="item in levelList" :key="item.path">
-        <a @click.prevent="cutRoute(item)">{{ item.meta.title }}</a>
-      </el-breadcrumb-item>
+      <transition-group name="breadcrumb">
+        <el-breadcrumb-item v-for="item in levelList" :key="item.name">
+          <a @click.prevent="cutRoute(item)">{{ item.meta.title }}</a>
+        </el-breadcrumb-item>
+      </transition-group>
     </el-breadcrumb>
   </div>
 </template>

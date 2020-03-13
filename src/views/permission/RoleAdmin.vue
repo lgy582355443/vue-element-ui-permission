@@ -1,8 +1,8 @@
 <template>
   <div class="role-admin-main">
-    <el-card class="box-card">
+    <el-card class="box-card" shadow="hover">
       <el-button class="add-btn" type="primary" size="small">添加角色</el-button>
-      <el-table :data="roleList" border stripe>
+      <el-table :data="roleList" border>
         <el-table-column prop="name" label="角色"></el-table-column>
         <el-table-column prop="title" label="角色名称"></el-table-column>
         <el-table-column prop="postscript" label="备注"></el-table-column>
@@ -10,15 +10,16 @@
           <template slot-scope="scope">
             <el-button
               type="primary"
-              size="small"
+              size="mini"
               :disabled="scope.row.name == 'admin'"
               @click="showEdit(scope.row)"
             >编辑</el-button>
-            <el-button type="danger" :disabled="scope.row.name == 'admin'" size="small">删除</el-button>
+            <el-button type="danger" :disabled="scope.row.name == 'admin'" size="mini">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
     </el-card>
+    <!-- 弹框 -->
     <el-dialog title="编辑" @opened="setCheckedKeys" :visible.sync="editUserVisible">
       <div class="editMenu">修改角色菜单</div>
       <tree ref="roleTree" :checkedKeys="currentRole.menu"></tree>
@@ -59,7 +60,9 @@ export default {
   methods: {
     //修改角色对应的路由
     updataRole() {
-      this.currentRole.menu = this.$refs.roleTree.getCheckedKeys();
+      const checkedKey = this.$refs.roleTree.getCheckedKeys();
+      this.currentRole.menu = checkedKey.menu;
+      this.currentRole.treeKey = checkedKey.treeKey;
       userApi.updataRole(this.currentRole).then(res => {
         if (res.data.code == 0) {
           //若修改的角色，是当前登录账号对应的角色，修改vueRouter路由表
@@ -80,7 +83,7 @@ export default {
     },
     //通过 keys 设置tree目前勾选的节点
     setCheckedKeys() {
-      this.$refs.roleTree.setCheckedKeys(this.currentRole.menu);
+      this.$refs.roleTree.setCheckedKeys(this.currentRole.treeKey);
     },
     //获取角色列表
     getRoleList() {
@@ -98,5 +101,9 @@ export default {
 <style lang="scss" scoped>
 .add-btn {
   margin: 10px 0;
+}
+.el-table {
+  border-top: 1px solid #ebeef5;
+  border-left: 1px solid #ebeef5;
 }
 </style>

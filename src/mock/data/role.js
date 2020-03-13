@@ -2,6 +2,7 @@ export const role = [{
     name: "admin",
     title: "超级管理员",
     postscript: "管理所有菜单",
+    treeKey: ["Main", "Permission", "Student", "Nested", "redirect404"],
     menu: [
       "Main",
       "Dashboard",
@@ -27,7 +28,9 @@ export const role = [{
     name: "editer",
     title: "编辑",
     postscript: "学生管理",
-    menu: ["Main",
+    treeKey: ["Main", "Permission", "Student", "redirect404"],
+    menu: [
+      "Main",
       "Dashboard",
       "Student",
       "Permission",
@@ -43,6 +46,7 @@ export const role = [{
     name: "visitor",
     title: "游客",
     postscript: "Nested",
+    treeKey: ["Main", "Permission", "Nested", "redirect404"],
     menu: [
       "Main",
       "Dashboard",

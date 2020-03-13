@@ -1,6 +1,25 @@
-.el-dropdown-menu{
+.el-dropdown-menu {
     padding: 15px;
 }
-.el-dropdown-menu__item{
+
+.el-dropdown-menu__item {
     padding: 5px 0;
+}
+
+// 表格
+.el-table {
+    font-size: 15px;
+    td {
+        padding: 5px 0;
+    }
+    th {
+        padding: 5px 0;
+    }
+}
+
+.el-card {
+    border: 1px solid #EBEEF5;
+}
+.el-button{
+    margin:5px;
 }

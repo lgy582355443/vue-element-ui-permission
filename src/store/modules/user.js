@@ -25,10 +25,10 @@ const user = {
       return commit("SET_ROLE_MENU", roleMenu);
     },
     setUserInfo({ commit }, userInfo) {
-      return new Promise((resolve)=>{
+      return new Promise(resolve => {
         commit("SET_USER_INFO", userInfo);
-        resolve()
-      })
+        resolve();
+      });
     },
     setAccessRoutes({ commit }, accessRoutes) {
       return commit("SET_ACCESS_ROUTES", accessRoutes);
@@ -40,7 +40,7 @@ const user = {
       window.localStorage.removeItem("userInfo");
     },
     //获取权限路由
-    updataPermissions({commit },menu) {   
+    updataPermissions({ commit }, menu) {
       commit("SET_ROLE_MENU", menu);
       const accessRoutes = filterAsyncRoutes(asyncRoutes, menu);
       commit("SET_ACCESS_ROUTES", accessRoutes);

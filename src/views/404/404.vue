@@ -2,7 +2,7 @@
   <div class="_404-main">
     <div>
       <div class="title">404：访问的路径不存在</div>
-      <router-link class="btn" :to="{path:'/'}" tag="div">返回</router-link>
+      <router-link class="btn" :to="{ path: '/' }" tag="div">返回</router-link>
     </div>
   </div>
 </template>

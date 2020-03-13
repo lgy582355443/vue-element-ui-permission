@@ -2,12 +2,14 @@
   <div class="layout-main">
     <navbar></navbar>
     <div class="layout-content">
-      <sidebar
-        :class="[{ isCollapse: isCollapse }, 'layout-sidebar']"
-      ></sidebar>
+      <sidebar :class="[{ isCollapse: isCollapse }, 'layout-sidebar']"></sidebar>
       <div class="layout-show">
         <tags-view class="layout-tags-view"></tags-view>
-        <router-view class="show-main"></router-view>
+        <!-- <el-scrollbar class="show-main"> -->
+          <transition name="fade-transform" mode="out-in">
+            <router-view class="show-main"></router-view>
+          </transition>
+        <!-- </el-scrollbar> -->
       </div>
     </div>
   </div>
@@ -48,6 +50,7 @@ export default {
     height: 100%;
     width: 100%;
     padding-top: $headerHeight;
+    overflow: hidden;
     .layout-sidebar {
       height: 100%;
       flex: 0 0 $sidebarMax;
@@ -59,10 +62,17 @@ export default {
     }
     .layout-show {
       flex: 1;
-      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      .layout-tags-view {
+        flex: 0 0 50px;
+      }
       .show-main {
+        flex: 1;
         box-sizing: border-box;
         padding: 20px;
+        // overflow: auto;
       }
     }
   }
