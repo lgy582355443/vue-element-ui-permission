@@ -67,8 +67,9 @@ export default {
         if (res.data.code == 0) {
           //若修改的角色，是当前登录账号对应的角色，修改vueRouter路由表
           if (res.data.roleInfo.name == this.userInfo.role) {
-            this.updataPermissions(res.data.roleInfo.menu);
-            this.getRoleList();
+            this.updataPermissions(res.data.roleInfo.menu).then(() => {
+              this.getRoleList();
+            });
             this.editUserVisible = false;
             this.$message.success("更改成功");
           } else {

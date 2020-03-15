@@ -1,16 +1,19 @@
 <template>
   <div v-if="!item.meta.hidden" class="siderbar-item-main">
-    <el-menu-item v-if="hasOneShowChild(menuItem)" :index="resolvePath(menuItem.path)">
-      <i v-if="menuItem.meta.icon" :class="menuItem.meta.icon"></i>
-      <span slot="title">{{ menuItem.meta.title }}</span>
+    <!-- 当只有一级菜单时 -->
+    <el-menu-item v-if="hasOneShowChild(item)" :index="resolvePath(item.path)">
+      <i v-if="item.meta.icon" :class="item.meta.icon"></i>
+      <span slot="title">{{ item.meta.title }}</span>
     </el-menu-item>
 
+    <!-- 多级菜单时，嵌套循环组件 -->
     <template v-else>
       <el-submenu :index="resolvePath(item.path)" popper-append-to-body>
         <template slot="title">
           <i v-if="item.meta.icon" :class="item.meta.icon"></i>
           <span slot="title">{{ item.meta.title }}</span>
         </template>
+        <!-- 调用自身组件（相当于递归）实现多级菜单嵌套 -->
         <siderbar-item
           v-for="child in item.children"
           :key="child.name"
@@ -48,26 +51,31 @@ export default {
     //判断是否只有一个子路由。
     hasOneShowChild(item) {
       if (!item.children) {
+        // this.menuItem = item;
         return true;
       }
-      if (item.children.length == 1) {
-        return true;
-      }
+      // if (item.children.length == 1) {
+      // this.menuItem = item.children[0];
+      // this.menuItem.meta.icon = item.meta.icon;
+      // this.hasOneShowChild(this.menuItem);
+      // return true;
+      // }
+      // this.menuItem = item;
       return false;
     },
-    getMenuItem() {
-      if (!this.item.children) {
-        this.menuItem = this.item;
-        return
-      }
-      if (this.item.children.length == 1) {
-        this.menuItem = this.item.children[0];
-        this.menuItem.meta.icon = this.item.meta.icon;
-        return
-      }
-      this.menuItem = this.item;
-      return
-    },
+    // getMenuItem(item) {
+    //   let menuItem = {};
+    //   if (!item.children) {
+    //     menuItem = item;
+    //     return menuItem;
+    //   }
+    //   if (item.children.length == 1) {
+    //     menuItem = item.children[0];
+    //     menuItem.meta.icon = item.meta.icon;
+    //   }
+    //   menuItem = item;
+    //   return menuItem;
+    // },
     resolvePath(routePath) {
       if (!this.item.children) {
         return this.basePath;
@@ -77,7 +85,7 @@ export default {
     }
   },
   created() {
-    this.getMenuItem();
+    // this.menuItem = this.getMenuItem(this.item);
   },
   mounted() {}
 };

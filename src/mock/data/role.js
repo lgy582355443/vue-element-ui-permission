@@ -1,4 +1,5 @@
-export const role = [{
+export const role = [
+  {
     name: "admin",
     title: "超级管理员",
     postscript: "管理所有菜单",

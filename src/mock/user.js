@@ -26,22 +26,18 @@ function userList() {
   return {
     user,
     code: 0
-  }
+  };
 }
 //角色列表
 function roleList() {
   return {
     role,
     code: 0
-  }
+  };
 }
 //获取角色信息
-function roleInfo(
-  params
-) {
-  const {
-    roleName
-  } = JSON.parse(params.body);
+function roleInfo(params) {
+  const { roleName } = JSON.parse(params.body);
   let roleInfo = role.find(item => item.name == roleName);
   return {
     roleInfo,
@@ -52,7 +48,7 @@ function roleInfo(
 function updataUser(params) {
   const newUser = JSON.parse(params.body);
   let userInfo = user.find(item => item.userName == newUser.userName);
-  userInfo.role = user.role;  //这样写是为了同时修改 /mock/data 文件夹里的数据
+  userInfo.role = user.role; //这样写是为了同时修改 /mock/data 文件夹里的数据
   return {
     userInfo,
     code: 0
@@ -77,4 +73,4 @@ export default {
   roleInfo,
   updataUser,
   updataRole
-}
+};

@@ -2,13 +2,15 @@
   <div class="layout-main">
     <navbar></navbar>
     <div class="layout-content">
-      <sidebar :class="[{ isCollapse: isCollapse }, 'layout-sidebar']"></sidebar>
+      <sidebar
+        :class="[{ isCollapse: isCollapse }, 'layout-sidebar']"
+      ></sidebar>
       <div class="layout-show">
         <tags-view class="layout-tags-view"></tags-view>
         <!-- <el-scrollbar class="show-main"> -->
-          <transition name="fade-transform" mode="out-in">
-            <router-view class="show-main"></router-view>
-          </transition>
+        <transition name="fade-transform" mode="out-in">
+          <router-view class="show-main"></router-view>
+        </transition>
         <!-- </el-scrollbar> -->
       </div>
     </div>
@@ -72,7 +74,7 @@ export default {
         flex: 1;
         box-sizing: border-box;
         padding: 20px;
-        // overflow: auto;
+        overflow: auto;
       }
     }
   }

@@ -1,6 +1,12 @@
 <template>
   <div class="menu-admin-main">
-    <el-tree :props="props" node-key="name" :data="asyncRoutes" show-checkbox ref="tree"></el-tree>
+    <el-tree
+      :props="props"
+      node-key="name"
+      :data="asyncRoutes"
+      show-checkbox
+      ref="tree"
+    ></el-tree>
   </div>
 </template>
 
@@ -50,7 +56,7 @@ export default {
       return {
         treeKey,
         menu
-      }
+      };
     },
     //通过 keys 设置目前勾选的节点
     setCheckedKeys(keyArr) {

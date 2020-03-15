@@ -1,7 +1,9 @@
 <template>
   <div class="user-admin-main">
     <el-card class="box-card" shadow="hover">
-      <el-button class="add-btn" type="primary" size="small">添加用户</el-button>
+      <el-button class="add-btn" type="primary" size="small"
+        >添加用户</el-button
+      >
       <el-table :data="userList" border>
         <el-table-column prop="userName" label="用户名"></el-table-column>
         <el-table-column prop="role" label="对应角色"></el-table-column>
@@ -10,17 +12,28 @@
             <el-button
               type="primary"
               :disabled="scope.row.userName == 'admin'"
-               size="mini"
+              size="mini"
               @click="showEdit(scope.row)"
-            >编辑</el-button>
-            <el-button type="danger" :disabled="scope.row.userName == 'admin'" size="mini">删除</el-button>
+              >编辑</el-button
+            >
+            <el-button
+              type="danger"
+              :disabled="scope.row.userName == 'admin'"
+              size="mini"
+              >删除</el-button
+            >
           </template>
         </el-table-column>
       </el-table>
     </el-card>
     <!-- 弹窗 -->
     <el-dialog title="编辑" :visible.sync="editUserVisible">
-      <el-form :model="currentUser" ref="ruleForm" label-width="100px" class="user-ruleForm">
+      <el-form
+        :model="currentUser"
+        ref="ruleForm"
+        label-width="100px"
+        class="user-ruleForm"
+      >
         <el-form-item label="修改用户角色">
           <el-select v-model="currentUser.role" placeholder="请选择角色">
             <el-option
