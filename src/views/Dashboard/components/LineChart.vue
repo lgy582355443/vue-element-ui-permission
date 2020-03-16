@@ -7,24 +7,7 @@
 <script>
 import echarts from "echarts";
 import echartsTheme from "./theme/westeros.json";
-let lineChartData = {
-  newVisitis: {
-    expectedData: [100, 120, 161, 134, 105, 160, 165],
-    actualData: [120, 82, 91, 154, 162, 140, 145]
-  },
-  messages: {
-    expectedData: [200, 192, 120, 144, 160, 130, 140],
-    actualData: [180, 160, 151, 106, 145, 150, 130]
-  },
-  purchases: {
-    expectedData: [80, 100, 121, 104, 105, 90, 100],
-    actualData: [120, 90, 100, 138, 142, 130, 130]
-  },
-  shoppings: {
-    expectedData: [130, 140, 141, 142, 145, 150, 160],
-    actualData: [120, 82, 91, 154, 162, 140, 130]
-  }
-};
+
 export default {
   name: "LineChart",
   components: {},
@@ -80,14 +63,14 @@ export default {
           }
         },
         legend: {
-          data: ["销售总额", "收藏量","订单量"]
+          data: ["销售总额", "收藏量", "订单量"]
         },
         series: [
           {
             name: "销售总额",
             smooth: true,
             type: "line",
-            data: [61330, 27840, 42360, 54665, 13165, 16550, 20165],
+            data: [61330, 27840, 42360, 54665, 13165, 16550, 20165]
             // animationDuration: 2800,
             // animationEasing: "cubicInOut"
           },
@@ -95,7 +78,7 @@ export default {
             name: "订单量",
             smooth: true,
             type: "line",
-            data:  [18880, 2160, 18251, 10636, 82445, 9215, 13540],
+            data: [18880, 2160, 18251, 10636, 82445, 9215, 13540]
             // animationDuration: 2800,
             // animationEasing: "cubicInOut"
           },
@@ -103,7 +86,7 @@ export default {
             name: "收藏量",
             smooth: true,
             type: "line",
-            data:  [21320, 53321, 14551, 24452, 21485, 15050, 38060],
+            data: [21320, 53321, 14551, 24452, 21485, 15050, 38060]
             // animationDuration: 2800,
             // animationEasing: "quadraticOut"
           }

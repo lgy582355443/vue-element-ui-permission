@@ -2,14 +2,22 @@
   <el-card class="event-card-main" shadow="hover">
     <div class="card-title">待处理事务</div>
     <div class="car-content">
-      <el-row :gutter="40" v-for="(item,index) in eventList" :key="index">
-        <el-col :xs="12" :sm="12" :lg="8" v-for="itemc in item" :key="itemc.title">
+      <el-row :gutter="40" v-for="(item, index) in eventList" :key="index">
+        <el-col
+          :xs="12"
+          :sm="12"
+          :lg="8"
+          v-for="itemc in item"
+          :key="itemc.title"
+        >
           <div class="event-item">
             <span class="event-title">
               <i class="el-icon-bell"></i>
-              {{itemc.title}}
+              {{ itemc.title }}
             </span>
-            <el-button type="warning" plain size="mini" class="event-num">{{itemc.count}}</el-button>
+            <el-button type="warning" plain size="mini" class="event-num">{{
+              itemc.count
+            }}</el-button>
           </div>
         </el-col>
       </el-row>
@@ -97,9 +105,9 @@ export default {
       align-items: center;
       margin-top: 10px;
       border-bottom: $mainBorder;
-      .el-icon-bell{
-          color: #fac20a;
-          font-weight: bold;
+      .el-icon-bell {
+        color: #fac20a;
+        font-weight: bold;
       }
     }
   }

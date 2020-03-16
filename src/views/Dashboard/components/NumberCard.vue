@@ -7,7 +7,12 @@
         </div>
         <div class="card-desc">
           <div class="card-text">今日订单总数</div>
-          <count-to :start-val="0" :end-val="1024" :duration="2000" class="card-num" />
+          <count-to
+            :start-val="0"
+            :end-val="1024"
+            :duration="2000"
+            class="card-num"
+          />
         </div>
       </el-card>
     </el-col>
@@ -18,7 +23,12 @@
         </div>
         <div class="card-desc">
           <div class="card-text">今日访问量</div>
-          <count-to :start-val="0" :end-val="45247" :duration="2000" class="card-num" />
+          <count-to
+            :start-val="0"
+            :end-val="45247"
+            :duration="2000"
+            class="card-num"
+          />
         </div>
       </el-card>
     </el-col>
@@ -29,7 +39,12 @@
         </div>
         <div class="card-desc">
           <div class="card-text">今日销售总额</div>
-          <count-to :start-val="0" :end-val="25232" :duration="2000" class="card-num" />
+          <count-to
+            :start-val="0"
+            :end-val="25232"
+            :duration="2000"
+            class="card-num"
+          />
         </div>
       </el-card>
     </el-col>
@@ -40,7 +55,12 @@
         </div>
         <div class="card-desc">
           <div class="card-text">昨日销售总额</div>
-          <count-to :start-val="0" :end-val="14243" :duration="2000" class="card-num" />
+          <count-to
+            :start-val="0"
+            :end-val="14243"
+            :duration="2000"
+            class="card-num"
+          />
         </div>
       </el-card>
     </el-col>
@@ -79,17 +99,17 @@ export default {
     border-radius: 6px;
     .iconfont {
       font-size: 50px;
-      &.icon-dingdan{
-          color:#40c9c6;
+      &.icon-dingdan {
+        color: #40c9c6;
       }
-      &.icon-zongjine{
-          color:#36a3f7;
+      &.icon-zongjine {
+        color: #36a3f7;
       }
-      &.icon-qian{
-          color:#f4516c;
+      &.icon-qian {
+        color: #f4516c;
       }
-      &.icon-jiaoyinzujifangke{
-          color:#40c969;
+      &.icon-jiaoyinzujifangke {
+        color: #40c969;
       }
     }
   }
@@ -104,7 +124,7 @@ export default {
       font-size: 16px;
       color: rgb(116, 116, 116);
     }
-    .card-num{
+    .card-num {
       font-size: 20px;
       font-weight: bold;
     }

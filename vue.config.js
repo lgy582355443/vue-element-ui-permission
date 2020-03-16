@@ -12,7 +12,8 @@ const cdn = {
       "https://cdn.bootcss.com/vuex/3.1.2/vuex.min.js",
       "https://cdn.bootcss.com/axios/0.19.2/axios.min.js",
       "https://cdn.bootcss.com/Mock.js/1.0.1-beta3/mock-min.js",
-      "https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"
+      "https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js",
+      "https://cdn.bootcss.com/echarts/4.6.0/echarts.min.js"
     ]
   }
 };
@@ -32,10 +33,10 @@ module.exports = {
     }
   },
   chainWebpack: config => {
-    // 移除 prefetch 插件
-    config.plugins.delete("prefetch");
-    // 移除 preload 插件
-    config.plugins.delete("preload");
+    // // 移除 prefetch 插件
+    // config.plugins.delete("prefetch");
+    // // 移除 preload 插件
+    // config.plugins.delete("preload");
     // 添加CDN参数到htmlWebpackPlugin配置中， 详见public/index.html 修改
     config.plugin("html").tap(args => {
       if (process.env.NODE_ENV === "production") {
@@ -54,7 +55,7 @@ module.exports = {
     } else {
       // 为生产环境修改配置...
       // 忽略生产环境打包的文件
-      (config.externals = {
+      config.externals = {
         vue: "Vue",
         "vue-router": "VueRouter",
         vuex: "Vuex",
@@ -62,24 +63,24 @@ module.exports = {
         echarts: "echarts",
         mockjs: "Mock",
         nprogress: "NProgress"
-      }),
-        (config.optimization = {
-          minimizer: [
-            new TerserPlugin({
-              cache: true,
-              parallel: true,
-              sourceMap: true, // Must be set to true if using source-maps in production
-              terserOptions: {
-                compress: {
-                  warnings: false,
-                  drop_console: true,
-                  drop_debugger: true,
-                  pure_funcs: ["console.log"]
-                }
+      };
+      config.optimization = {
+        minimizer: [
+          new TerserPlugin({
+            cache: true,
+            parallel: true,
+            sourceMap: true, // Must be set to true if using source-maps in production
+            terserOptions: {
+              compress: {
+                warnings: false,
+                drop_console: true,
+                drop_debugger: true,
+                pure_funcs: ["console.log"]
               }
-            })
-          ]
-        });
+            }
+          })
+        ]
+      };
     }
   }
 };

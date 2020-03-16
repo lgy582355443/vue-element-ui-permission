@@ -1,7 +1,9 @@
 <template>
   <div class="role-admin-main">
     <el-card class="box-card" shadow="hover">
-      <el-button class="add-btn" type="primary" size="small">添加角色</el-button>
+      <el-button class="add-btn" type="primary" size="small"
+        >添加角色</el-button
+      >
       <el-table :data="roleList" border>
         <el-table-column prop="name" label="角色"></el-table-column>
         <el-table-column prop="title" label="角色名称"></el-table-column>
@@ -13,14 +15,24 @@
               size="mini"
               :disabled="scope.row.name == 'admin'"
               @click="showEdit(scope.row)"
-            >编辑</el-button>
-            <el-button type="danger" :disabled="scope.row.name == 'admin'" size="mini">删除</el-button>
+              >编辑</el-button
+            >
+            <el-button
+              type="danger"
+              :disabled="scope.row.name == 'admin'"
+              size="mini"
+              >删除</el-button
+            >
           </template>
         </el-table-column>
       </el-table>
     </el-card>
     <!-- 弹框 -->
-    <el-dialog title="编辑" @opened="setCheckedKeys" :visible.sync="editUserVisible">
+    <el-dialog
+      title="编辑"
+      @opened="setCheckedKeys"
+      :visible.sync="editUserVisible"
+    >
       <div class="editMenu">修改角色菜单</div>
       <tree ref="roleTree" :checkedKeys="currentRole.menu"></tree>
       <span slot="footer" class="dialog-footer">

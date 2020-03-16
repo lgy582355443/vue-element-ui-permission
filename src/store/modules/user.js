@@ -41,14 +41,14 @@ const user = {
     },
     //获取权限路由
     updataPermissions({ commit }, menu) {
-      return new Promise((resolve)=>{
+      return new Promise(resolve => {
         commit("SET_ROLE_MENU", menu);
         const accessRoutes = filterAsyncRoutes(asyncRoutes, menu);
         commit("SET_ACCESS_ROUTES", accessRoutes);
         resetRouter();
         router.addRoutes(accessRoutes);
-        resolve()
-      }) 
+        resolve();
+      });
     }
   }
 };

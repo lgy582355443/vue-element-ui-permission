@@ -38,9 +38,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.chart-group{
+.chart-group {
   height: 300px;
-  .chart-col{
+  .chart-col {
     height: 100%;
   }
 }
