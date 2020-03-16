@@ -26,8 +26,7 @@ router.beforeEach((to, from, next) => {
     } else {
       const userInfo = getStorage("userInfo");
       store.dispatch("setUserInfo", userInfo);
-      userApi
-        .getRoleInfo({
+      userApi.getRoleInfo({
           roleName: userInfo.role
         })
         .then(res => {

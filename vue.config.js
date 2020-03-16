@@ -8,8 +8,8 @@ const cdn = {
     css: ["https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css"],
     js: [
       "https://cdn.bootcss.com/vue/2.6.11/vue.min.js",
-      "https://cdn.bootcss.com/vue-router/3.1.3/vue-router.min.js",
       "https://cdn.bootcss.com/vuex/3.1.2/vuex.min.js",
+      "https://cdn.bootcss.com/vue-router/3.1.3/vue-router.min.js",
       "https://cdn.bootcss.com/axios/0.19.2/axios.min.js",
       "https://cdn.bootcss.com/Mock.js/1.0.1-beta3/mock-min.js",
       "https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js",
