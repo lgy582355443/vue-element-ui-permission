@@ -3,7 +3,9 @@
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <transition-group name="breadcrumb">
         <el-breadcrumb-item v-for="item in levelList" :key="item.name">
-          <a @click.prevent="cutRoute(item)">{{ item.meta.title }}</a>
+          <a @click.prevent="cutRoute(item)" class="link">{{
+            item.meta.title
+          }}</a>
         </el-breadcrumb-item>
       </transition-group>
     </el-breadcrumb>
@@ -12,18 +14,18 @@
 
 <script>
 export default {
-  name: "TagsBreadcrumb",
+  name: "NavBreadcrumb",
   components: {},
   props: {},
   data() {
     return {
-      levelList: null
+      levelList: null,
     };
   },
   watch: {
     $route() {
       this.getBreadcrumb();
-    }
+    },
   },
   computed: {},
   methods: {
@@ -31,7 +33,7 @@ export default {
     getBreadcrumb() {
       // $route.matched一个数组，包含当前路由的所有嵌套路径片段的路由记录 。
       this.levelList = this.$route.matched.filter(
-        item => item.meta && item.meta.title && item.meta.breadcrumb !== false
+        (item) => item.meta && item.meta.title && item.meta.breadcrumb !== false
       );
     },
     cutRoute(item) {
@@ -44,17 +46,17 @@ export default {
       } else {
         this.$router.push(item.path);
       }
-    }
+    },
   },
   created() {
     this.getBreadcrumb();
   },
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
-.tags-Breadcrumb-main {
-  width: 100%;
+@import "style@/transition.scss";
+.link {
   font-size: 15px;
   line-height: 50px;
 }

@@ -1,0 +1,7 @@
+@import "./variable.scss";
+@mixin centenBox {
+  box-sizing: border-box;
+  padding: 10px;
+  border: $mainBorder;
+  border-radius: 4px;
+}

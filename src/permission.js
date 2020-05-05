@@ -24,9 +24,10 @@ router.beforeEach((to, from, next) => {
     if (roleMenu) {
       next();
     } else {
-      const userInfo = getStorage("userInfo");
+      let userInfo = getStorage("userInfo");
       store.dispatch("setUserInfo", userInfo);
-      userApi.getRoleInfo({
+      userApi
+        .getRoleInfo({
           roleName: userInfo.role
         })
         .then(res => {
@@ -53,7 +54,6 @@ router.beforeEach((to, from, next) => {
       next();
     }
   }
-  next();
 });
 
 router.afterEach(() => {

@@ -23,6 +23,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "style@/variable.scss";
 ._404-main {
   display: flex;
   justify-content: center;

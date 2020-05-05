@@ -1,15 +1,15 @@
 <template>
   <div class="layout-main">
-    <navbar></navbar>
+    <headers></headers>
     <div class="layout-content">
       <sidebar
         :class="[{ isCollapse: isCollapse }, 'layout-sidebar']"
       ></sidebar>
       <div class="layout-show">
-        <tags-view class="layout-tags-view"></tags-view>
+        <nav-bar class="layout-tags-view"></nav-bar>
         <!-- <el-scrollbar class="show-main"> -->
         <transition name="fade-transform" mode="out-in">
-          <router-view class="show-main"></router-view>
+          <router-view class="show-main" :key="key"></router-view>
         </transition>
         <!-- </el-scrollbar> -->
       </div>
@@ -18,16 +18,16 @@
 </template>
 
 <script>
-import Navbar from "./components/Navbar/Navbar.vue";
+import Headers from "./components/Headers/Headers.vue";
 import Sidebar from "./components/Sidebar/Sidebar.vue";
-import TagsView from "./components/TagsView/TagsView.vue";
+import NavBar from "./components/NavBar/NavBar.vue";
 import { mapGetters } from "vuex";
 export default {
   name: "Layout",
   components: {
-    Navbar,
+    Headers,
     Sidebar,
-    TagsView
+    NavBar
   },
   props: {},
   data() {
@@ -35,7 +35,10 @@ export default {
   },
   watch: {},
   computed: {
-    ...mapGetters(["isCollapse"])
+    ...mapGetters(["isCollapse"]),
+    key() {
+      return this.$router.path;
+    }
   },
   methods: {},
   created() {},
@@ -43,6 +46,8 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "style@/variable.scss";
+@import "style@/transition.scss";
 .layout-main {
   width: 100%;
   height: 100%;
@@ -56,7 +61,6 @@ export default {
     .layout-sidebar {
       height: 100%;
       flex: 0 0 $sidebarMax;
-      border: $mainBorder;
       transition: all 0.2s;
       &.isCollapse {
         flex: 0 0 $sidebarMin;

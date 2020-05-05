@@ -75,12 +75,11 @@ export default {
         }
       });
     }
-  },
-  created() {},
-  mounted() {}
+  }
 };
 </script>
 <style lang="scss" scoped>
+@import "style@/variable.scss";
 .login-main {
   position: relative;
   width: 100%;

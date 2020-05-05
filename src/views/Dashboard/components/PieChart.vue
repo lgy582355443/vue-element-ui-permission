@@ -1,7 +1,7 @@
 <template>
-  <el-card shadow="hover" class="PieChart-main">
+  <div class="PieChart-main">
     <div id="pieChart"></div>
-  </el-card>
+  </div>
 </template>
 
 <script>
@@ -17,12 +17,16 @@ export default {
   },
   data() {
     return {
-      myChart: null
+      PieChart: null
     };
   },
   created() {},
   mounted() {
     this.loadChart();
+  },
+  destroyed() {
+    let then = this;
+    window.removeEventListener("resize", then.debounce(then.resizePieChart));
   },
   watch: {
     type: v => {
@@ -34,12 +38,28 @@ export default {
     loadChart() {
       this.$nextTick(() => {
         echarts.registerTheme("westeros", echartsTheme);
-        this.myChart = echarts.init(
+        this.PieChart = echarts.init(
           document.getElementById("pieChart"),
           "westeros"
         );
-        this.myChart.setOption(this.initOption(this.type));
+        this.PieChart.setOption(this.initOption(this.type));
+        let then = this;
+        window.onresize = then.debounce(then.resizePieChart);
       });
+    },
+    resizePieChart() {
+      this.PieChart.resize();
+    },
+    debounce(func) {
+      let timeout = null;
+      return function() {
+        if (timeout) {
+          clearTimeout(timeout);
+        }
+        timeout = setTimeout(() => {
+          func.apply(this, arguments);
+        }, 300);
+      };
     },
     initOption(type) {
       let text, legend_data, series_data;
@@ -112,9 +132,11 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "style@/mixin.scss";
 .PieChart-main {
   width: 100%;
   height: 100%;
+  @include centenBox;
   #pieChart {
     width: 100%;
     height: 100%;

@@ -10,13 +10,10 @@ export default {
   components: {},
   props: {},
   data() {
-    return {};
-  },
-  watch: {},
-  computed: {},
-  methods: {},
-  created() {},
-  mounted() {}
+    return {
+      imgurl: ""
+    };
+  }
 };
 </script>
 <style lang="scss" scoped></style>

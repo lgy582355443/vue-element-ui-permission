@@ -36,7 +36,7 @@ const user = {
     logout({ commit }) {
       commit("SET_ROLE_MENU", null);
       commit("SET_USER_INFO", {});
-      window.localStorage.removeItem("Token");
+      window.localStorage.removeItem("ADMIN_TOKEN");
       window.localStorage.removeItem("userInfo");
     },
     //获取权限路由

@@ -77,15 +77,11 @@ export default {
   props: {},
   data() {
     return {};
-  },
-  created() {},
-  mounted() {},
-  watch: {},
-  computed: {},
-  methods: {}
+  }
 };
 </script>
 <style lang="scss" scoped>
+@import "style@/variable.scss";
 .card-col {
   margin: 10px 0;
 }
@@ -122,7 +118,7 @@ export default {
       line-height: 30px;
       font-weight: bold;
       font-size: 16px;
-      color: rgb(116, 116, 116);
+      color: $baseFont;
     }
     .card-num {
       font-size: 20px;

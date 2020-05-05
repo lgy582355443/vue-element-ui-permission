@@ -112,11 +112,12 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "style@/variable.scss";
 .add-btn {
   margin: 10px 0;
 }
 .el-table {
-  border-top: 1px solid #ebeef5;
-  border-left: 1px solid #ebeef5;
+  border-top: 1px solid $borderColor;
+  border-left: 1px solid $borderColor;
 }
 </style>

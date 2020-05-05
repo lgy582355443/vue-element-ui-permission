@@ -3,14 +3,15 @@
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         class="el-menu-vertical"
-        :default-active="activeMenu"
         :collapse="isCollapse"
         :collapse-transition="false"
-        :router="true"
+        background-color="#304156"
+        text-color="#bfcbd9"
+        active-text-color="#409EFF"
       >
         <siderbar-item
           v-for="item in accessRoutes"
-          :key="item.name"
+          :key="item.path"
           :item="item"
           :base-path="item.path"
         ></siderbar-item>
@@ -27,13 +28,11 @@ export default {
   name: "Sidebar",
   mixins: [layoutMixin, userMixin],
   components: {
-    SiderbarItem
+    SiderbarItem,
   },
-  props: {},
   data() {
     return {};
   },
-  watch: {},
   computed: {
     activeMenu() {
       const route = this.$route;
@@ -42,17 +41,16 @@ export default {
         return meta.activeMenu;
       }
       return path;
-    }
+    },
   },
-  methods: {},
-  created() {},
-  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
+@import "style@/variable.scss";
 .sidebar-main {
   height: 100%;
   width: 100%;
   overflow: hidden;
+  background-color: $menuBg;
 }
 </style>

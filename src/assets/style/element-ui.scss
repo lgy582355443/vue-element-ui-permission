@@ -1,40 +1,94 @@
-.el-dropdown-menu {
+@import "./variable.scss";
+#app {
+  .el-dropdown-menu {
     padding: 15px;
-}
-
-.el-dropdown-menu__item {
-    padding: 5px 0;
-}
-
-// 表格
-.el-table {
+    .el-dropdown-menu__item {
+      padding: 5px 0;
+    }
+    .el-select-dropdown__item {
+      line-height: 34px;
+      padding-left: 5px;
+    }
+  }
+  //   侧边栏
+  .el-menu {
+    border: none;
+  }
+  .submenu-title-noDropdown,
+  .el-submenu__title {
+    &:hover {
+      background-color: $menuHover !important;
+    }
+  }
+  .is-active > .el-submenu__title {
+    color: $subMenuActiveText !important;
+  }
+  .nest-menu .el-submenu > .el-submenu__title,
+  .el-submenu .el-menu-item {
+    min-width: $sidebarMax !important;
+    background-color: $subMenuBg !important;
+    &:hover {
+      background-color: $subMenuHover !important;
+    }
+  }
+  .el-menu--collapse {
+    span {
+      display: none;
+    }
+    .el-submenu__icon-arrow {
+      display: none;
+    }
+  }
+  // 表格
+  .el-table {
     font-size: 15px;
     td {
-        padding: 5px 0;
+      padding: 5px 0;
     }
     th {
-        padding: 7px 0;
-        background-color: #f3f9ff;
+      padding: 7px 0;
+      background-color: #f3f9ff;
     }
-}
-
-.el-card {
-    border: 1px solid #EBEEF5;
-}
-.el-button{
-    margin:5px;
-}
-
-.el-select-dropdown__item{
-    line-height: 34px;
-    padding-left: 5px;
-}
-
-.el-card{
-  .el-card__body{
-      box-sizing: border-box;
+  }
+  //按钮
+  .el-button {
+    margin: 5px;
+  }
+  //卡片
+  .el-card {
+    border: 1px solid $borderColor;
+    .el-card__body {
       height: 100%;
+      box-sizing: border-box;
       padding: 10px;
-      overflow: hidden;
-  }  
+    }
+  }
+
+  //scrollBar
+  > .el-menu--popup {
+    max-height: 100vh;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar-track-piece {
+      background: #d3dce6;
+    }
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #99a9bf;
+      border-radius: 20px;
+    }
+  }
+  .scrollbar-wrapper {
+    overflow-x: hidden !important;
+  }
+  .el-scrollbar__bar.is-vertical {
+    right: 0px;
+  }
+  .el-scrollbar {
+    height: 100%;
+  }
 }

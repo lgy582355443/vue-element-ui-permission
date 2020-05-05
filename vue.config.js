@@ -1,4 +1,5 @@
 const TerserPlugin = require("terser-webpack-plugin");
+const path = require("path");
 const cdn = {
   dev: {
     css: [],
@@ -23,21 +24,21 @@ module.exports = {
   lintOnSave: process.env.NODE_ENV === "production" ? false : true, // 关闭eslint
   // 打包时不生成.map文件
   productionSourceMap: false,
-  css: {
-    loaderOptions: {
-      sass: {
-        //引入全局样式
-        // data：`@import "~@/assets/variable.scss";` v7之前使用 的是data，现在改成了prependData
-        prependData: `@import "~@/assets/style/global.scss";`
-      }
-    }
-  },
+  // css: {
+  //   loaderOptions: {
+  //     sass: {
+  //       //引入全局样式
+  //       // data：`@import "~@/assets/variable.scss";` v7之前使用 的是data，现在改成了prependData
+  //       prependData: `@import "~@/assets/style/global.scss";`
+  //     }
+  //   }
+  // },
   chainWebpack: config => {
     // // 移除 prefetch 插件
     // config.plugins.delete("prefetch");
     // // 移除 preload 插件
     // config.plugins.delete("preload");
-    // 添加CDN参数到htmlWebpackPlugin配置中， 详见public/index.html 修改
+    // 添加CDN参数到htmlWebpackPlugin配置中
     config.plugin("html").tap(args => {
       if (process.env.NODE_ENV === "production") {
         args[0].cdn = cdn.build;
@@ -47,6 +48,9 @@ module.exports = {
       }
       return args;
     });
+    config.resolve.alias
+      .set("@", path.resolve(__dirname, "./src"))
+      .set("style@", path.resolve(__dirname, "./src/assets/style"));
   },
   configureWebpack: config => {
     if (process.env.NODE_ENV === "development") {

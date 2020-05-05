@@ -1,27 +1,24 @@
 <template>
-  <div class="navbar-main">
-    <div class="logo">logo</div>
-
-    <el-dropdown placement="bottom" class="user" trigger="click">
-      <span class="el-dropdown-link">
-        {{ userInfo.userName }}
-        <i class="el-icon-arrow-down el-icon--right"></i>
-      </span>
-      <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item command="a">个人信息</el-dropdown-item>
-        <el-dropdown-item @click.native="doLogout">退出登录</el-dropdown-item>
-      </el-dropdown-menu>
-    </el-dropdown>
+  <div class="tags-view-main">
+    <div
+      :class="[{ isClose: isCollapse }, 'icon', 'navbar-switch']"
+      @click="closeNav"
+    >
+      <i class="el-icon-s-fold"></i>
+    </div>
+    <nav-breadcrumb></nav-breadcrumb>
   </div>
 </template>
 
 <script>
-import { userMixin } from "@/mixins/user.js";
-import { resetRouter } from "@/router/index.js";
+import { layoutMixin } from "../../../mixins/layout.js";
+import NavBreadcrumb from "./NavBreadcrumb";
 export default {
-  name: "Navbar",
-  mixins: [userMixin],
-  components: {},
+  name: "NavBar",
+  mixins: [layoutMixin],
+  components: {
+    NavBreadcrumb,
+  },
   props: {},
   data() {
     return {};
@@ -29,43 +26,28 @@ export default {
   watch: {},
   computed: {},
   methods: {
-    doLogout() {
-      this.logout();
-      //重置vue-router
-      resetRouter();
-      this.$router.push({ name: "Login" });
-    }
+    closeNav() {
+      this.setCollapse(!this.isCollapse);
+    },
   },
   created() {},
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
-.navbar-main {
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: $headerHeight;
+.tags-view-main {
   width: 100%;
+  height: 50px;
   border-bottom: 1px solid #dcdfe6;
-  .logo {
+  .navbar-switch {
     float: left;
-    font-size: 30px;
+    font-size: 20px;
     line-height: 50px;
-    margin-left: 20px;
-    color: #0e5fbb;
-    font-weight: bolder;
-  }
-  .user {
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
-    margin-right: 20px;
-    line-height: 50px;
-    font-size: 18px;
-    color: #0e5fbb;
-    cursor: pointer;
+    margin: 0 10px;
+    transition: all 0.6s;
+    &.isClose {
+      transform: rotate(180deg);
+    }
   }
 }
 </style>

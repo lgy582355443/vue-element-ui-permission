@@ -1,4 +1,4 @@
-const TokenKey = "Token";
+const TokenKey = "ADMIN_TOKEN";
 
 export function getToken() {
   return getStorage(TokenKey);

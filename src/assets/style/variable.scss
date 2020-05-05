@@ -1,12 +1,20 @@
-$baseBg:#5C5C5B;
-$childBg:#D9D3CE;
-$baseFont:#ACACAC;
+$baseBg:#304156;
+$childBg:#263445;
+$borderColor:#dcdfe6;
+$baseFont:rgb(153, 153, 153);
 $childFont:#DEDFDE;
-$white:#fff;
 
 $headerHeight:60px;
 $sidebarMax:200px;
 $sidebarMin:60px;
-$mainBorder: 1px solid #dcdfe6;
+$mainBorder: 1px solid $borderColor;
 $titleColor:#0e5fbb;
 $showMainBg:#EFF1F4;
+// sidebar
+$menuText:#bfcbd9;
+$menuActiveText:#409EFF;
+$subMenuActiveText:#f4f4f5; 
+$menuBg:#304156;
+$menuHover:#263445;
+$subMenuBg:#1f2d3d;
+$subMenuHover:#001528;

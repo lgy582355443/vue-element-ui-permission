@@ -7,6 +7,7 @@
       <el-table :data="userList" border>
         <el-table-column prop="userName" label="用户名"></el-table-column>
         <el-table-column prop="role" label="对应角色"></el-table-column>
+        <el-table-column prop="roleName" label="角色名称"></el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
             <el-button
@@ -129,11 +130,12 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "style@/variable.scss";
 .add-btn {
   margin: 10px 0;
 }
 .el-table {
-  border-top: 1px solid #ebeef5;
-  border-left: 1px solid #ebeef5;
+  border-top: 1px solid $borderColor;
+  border-left: 1px solid $borderColor;
 }
 </style>

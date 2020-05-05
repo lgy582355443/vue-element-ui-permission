@@ -7,7 +7,12 @@ const constantRoutes = [
       import(
         /* webpackChunkName: "Login" */
         "../views/Login/Login.vue"
-      )
+      ),
+    meta: {
+      hidden: true,
+      disabled: true,
+      title: "登录"
+    }
   },
   {
     path: "/404",
@@ -16,7 +21,12 @@ const constantRoutes = [
       import(
         /* webpackChunkName: "404" */
         "../views/404/404.vue"
-      )
+      ),
+    meta: {
+      hidden: true,
+      disabled: true,
+      title: "404"
+    }
   }
 ];
 

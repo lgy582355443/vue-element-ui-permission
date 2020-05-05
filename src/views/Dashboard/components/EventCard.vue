@@ -86,13 +86,14 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "style@/variable.scss";
 .event-card-main {
   margin: 20px 0;
   width: 100%;
   .card-title {
-    color: #606266;
+    color: $baseFont;
     padding: 15px 10px;
-    background: #f2f6fc;
+    background: #ffffff;
     font-weight: bold;
   }
   .car-content {
