@@ -38,8 +38,7 @@ function roleList() {
 //获取角色信息
 function roleInfo(params) {
   const { roleName } = JSON.parse(params.body);
-  console.log(params);
-  let roleInfo = role.find(item => item.name == roleName);
+  let roleInfo = role.find(item => item.role == roleName);
   return {
     roleInfo,
     code: 0
@@ -48,8 +47,11 @@ function roleInfo(params) {
 //更改用户
 function updataUser(params) {
   const newUser = JSON.parse(params.body);
+  let userIndex = user.findIndex(item => item.userName == newUser.userName);
   let userInfo = user.find(item => item.userName == newUser.userName);
-  userInfo.role = newUser.role; //这样写是为了同时修改 /mock/data 文件夹里的数据
+  let newRole = role.find(item => newUser.role == item.role);
+  userInfo = { ...userInfo, ...{ role: newRole.role, roleName: newRole.roleName } }
+  user[userIndex] = userInfo
   return {
     userInfo,
     code: 0
@@ -58,7 +60,7 @@ function updataUser(params) {
 //修改角色
 function updataRole(params) {
   const newRole = JSON.parse(params.body);
-  let roleInfo = role.find(item => item.name == newRole.name);
+  let roleInfo = role.find(item => item.role == newRole.role);
   roleInfo.menu = newRole.menu;
   roleInfo.treeKey = newRole.treeKey;
   return {

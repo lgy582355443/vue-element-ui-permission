@@ -1,7 +1,7 @@
-export const role = [
+export let role = [
   {
-    name: "admin",
-    title: "超级管理员",
+    role: "admin",
+    roleName: "超级管理员",
     postscript: "管理所有菜单",
     treeKey: ["Main", "Permission", "Student", "Nested", "redirect404"],
     menu: [
@@ -26,8 +26,8 @@ export const role = [
     ]
   },
   {
-    name: "editer",
-    title: "编辑",
+    role: "editer",
+    roleName: "编辑",
     postscript: "学生管理",
     treeKey: ["Main", "Permission", "Student", "redirect404"],
     menu: [
@@ -44,8 +44,8 @@ export const role = [
     ]
   },
   {
-    name: "visitor",
-    title: "游客",
+    role: "visitor",
+    roleName: "游客",
     postscript: "Nested",
     treeKey: ["Main", "Permission", "Nested", "redirect404"],
     menu: [

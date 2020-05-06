@@ -5,21 +5,21 @@
         >添加角色</el-button
       >
       <el-table :data="roleList" border>
-        <el-table-column prop="name" label="角色"></el-table-column>
-        <el-table-column prop="title" label="角色名称"></el-table-column>
+        <el-table-column prop="role" label="角色"></el-table-column>
+        <el-table-column prop="roleName" label="角色名称"></el-table-column>
         <el-table-column prop="postscript" label="备注"></el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
             <el-button
               type="primary"
               size="mini"
-              :disabled="scope.row.name == 'admin'"
+              :disabled="scope.row.role == 'admin'"
               @click="showEdit(scope.row)"
               >编辑</el-button
             >
             <el-button
               type="danger"
-              :disabled="scope.row.name == 'admin'"
+              :disabled="scope.row.role == 'admin'"
               size="mini"
               >删除</el-button
             >
@@ -51,7 +51,7 @@ export default {
   name: "RoleAdmin",
   mixins: [userMixin],
   components: {
-    Tree
+    Tree,
   },
   props: {},
   data() {
@@ -59,8 +59,8 @@ export default {
       roleList: null,
       editUserVisible: false,
       currentRole: {
-        menu: []
-      }
+        menu: [],
+      },
     };
   },
   watch: {},
@@ -75,19 +75,23 @@ export default {
       const checkedKey = this.$refs.roleTree.getCheckedKeys();
       this.currentRole.menu = checkedKey.menu;
       this.currentRole.treeKey = checkedKey.treeKey;
-      userApi.updataRole(this.currentRole).then(res => {
+      userApi.updataRole(this.currentRole).then((res) => {
         if (res.data.code == 0) {
+          console.log("修改后fanh",res.data)
           //若修改的角色，是当前登录账号对应的角色，修改vueRouter路由表
-          if (res.data.roleInfo.name == this.userInfo.role) {
+          if (res.data.roleInfo.role == this.userInfo.role) {
             this.updataPermissions(res.data.roleInfo.menu).then(() => {
               this.getRoleList();
             });
-            this.editUserVisible = false;
             this.$message.success("更改成功");
           } else {
-            this.$message.error("更改失败");
+            this.getRoleList();
+            this.$message.success("更改成功");
           }
+        } else {
+          this.$message.error("更改失败");
         }
+        this.editUserVisible = false;
       });
     },
     showEdit(role) {
@@ -100,15 +104,15 @@ export default {
     },
     //获取角色列表
     getRoleList() {
-      userApi.getRoleList().then(res => {
+      userApi.getRoleList().then((res) => {
         if (res.data.code == 0) {
           this.roleList = res.data.role;
         } else {
           this.$Message.error("获取失败");
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

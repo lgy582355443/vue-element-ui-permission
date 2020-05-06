@@ -5,13 +5,13 @@
       <sidebar
         :class="[{ isCollapse: isCollapse }, 'layout-sidebar']"
       ></sidebar>
-      <div class="layout-show">
+      <div :class="[{ isCollapse: isCollapse }, 'layout-show']">
         <nav-bar class="layout-tags-view"></nav-bar>
-        <!-- <el-scrollbar class="show-main"> -->
-        <transition name="fade-transform" mode="out-in">
-          <router-view class="show-main" :key="key"></router-view>
-        </transition>
-        <!-- </el-scrollbar> -->
+        <el-scrollbar wrap-class="scrollbar-wrapper">
+          <transition name="fade-transform" mode="out-in">
+            <router-view class="show-main" :key="key"></router-view>
+          </transition>
+        </el-scrollbar>
       </div>
     </div>
   </div>
@@ -27,7 +27,7 @@ export default {
   components: {
     Headers,
     Sidebar,
-    NavBar
+    NavBar,
   },
   props: {},
   data() {
@@ -38,11 +38,8 @@ export default {
     ...mapGetters(["isCollapse"]),
     key() {
       return this.$router.path;
-    }
+    },
   },
-  methods: {},
-  created() {},
-  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
@@ -52,30 +49,32 @@ export default {
   width: 100%;
   height: 100%;
   .layout-content {
-    display: flex;
     box-sizing: border-box;
     height: 100%;
     width: 100%;
     padding-top: $headerHeight;
     overflow: hidden;
     .layout-sidebar {
+      float: left;
       height: 100%;
-      flex: 0 0 $sidebarMax;
+      width: $sidebarMax;
       transition: all 0.2s;
       &.isCollapse {
-        flex: 0 0 $sidebarMin;
+        width: $sidebarMin;
       }
     }
     .layout-show {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
+      height: 100%;
+      margin-left: $sidebarMax;
+      transition: all 0.2s;
+      &.isCollapse {
+        margin-left: $sidebarMin;
+      }
       .layout-tags-view {
-        flex: 0 0 50px;
+        margin-left: 0 0 50px;
       }
       .show-main {
-        flex: 1;
+        width: 100%;
         box-sizing: border-box;
         padding: 20px;
         overflow: auto;
