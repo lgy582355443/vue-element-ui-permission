@@ -69,8 +69,8 @@ export default {
       editUserVisible: false,
       currentUser: {
         userName: "",
-        role: "",
-      },
+        role: ""
+      }
     };
   },
   watch: {},
@@ -86,14 +86,14 @@ export default {
       this.editUserVisible = true;
     },
     updataRole() {
-      userApi.updataUser(this.currentUser).then((res) => {
+      userApi.updataUser(this.currentUser).then(res => {
         if (res.data.code == 0) {
           //若修改的是当前登录的账号，则修改路由
           if (this.currentUser.userName == this.userInfo.userName) {
             this.setUserInfo(res.data.userInfo).then(() => {
               userApi
                 .getRoleInfo({ roleName: this.userInfo.role })
-                .then((res) => {
+                .then(res => {
                   if (res.data.code == 0) {
                     this.updataPermissions(res.data.roleInfo.menu);
                     this.getUserList();
@@ -113,7 +113,7 @@ export default {
       });
     },
     getUserList() {
-      userApi.getUserList().then((res) => {
+      userApi.getUserList().then(res => {
         if (res.data.code == 0) {
           console.log("获取用户", res.data.user);
           this.userList = res.data.user;
@@ -123,15 +123,15 @@ export default {
       });
     },
     getRoleList() {
-      userApi.getRoleList().then((res) => {
+      userApi.getRoleList().then(res => {
         if (res.data.code == 0) {
           this.roleList = res.data.role;
         } else {
           this.$message.error("获取失败");
         }
       });
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

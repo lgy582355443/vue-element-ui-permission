@@ -51,7 +51,7 @@ export default {
   name: "RoleAdmin",
   mixins: [userMixin],
   components: {
-    Tree,
+    Tree
   },
   props: {},
   data() {
@@ -59,8 +59,8 @@ export default {
       roleList: null,
       editUserVisible: false,
       currentRole: {
-        menu: [],
-      },
+        menu: []
+      }
     };
   },
   watch: {},
@@ -75,9 +75,9 @@ export default {
       const checkedKey = this.$refs.roleTree.getCheckedKeys();
       this.currentRole.menu = checkedKey.menu;
       this.currentRole.treeKey = checkedKey.treeKey;
-      userApi.updataRole(this.currentRole).then((res) => {
+      userApi.updataRole(this.currentRole).then(res => {
         if (res.data.code == 0) {
-          console.log("修改后fanh",res.data)
+          console.log("修改后fanh", res.data);
           //若修改的角色，是当前登录账号对应的角色，修改vueRouter路由表
           if (res.data.roleInfo.role == this.userInfo.role) {
             this.updataPermissions(res.data.roleInfo.menu).then(() => {
@@ -104,15 +104,15 @@ export default {
     },
     //获取角色列表
     getRoleList() {
-      userApi.getRoleList().then((res) => {
+      userApi.getRoleList().then(res => {
         if (res.data.code == 0) {
           this.roleList = res.data.role;
         } else {
           this.$Message.error("获取失败");
         }
       });
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

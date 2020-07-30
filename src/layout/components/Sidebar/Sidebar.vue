@@ -28,7 +28,7 @@ export default {
   name: "Sidebar",
   mixins: [layoutMixin, userMixin],
   components: {
-    SiderbarItem,
+    SiderbarItem
   },
   data() {
     return {};
@@ -41,8 +41,8 @@ export default {
         return meta.activeMenu;
       }
       return path;
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

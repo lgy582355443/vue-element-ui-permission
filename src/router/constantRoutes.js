@@ -14,6 +14,7 @@ const constantRoutes = [
       title: "登录"
     }
   },
+
   {
     path: "/404",
     name: "404",

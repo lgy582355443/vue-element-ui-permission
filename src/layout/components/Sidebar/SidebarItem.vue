@@ -69,21 +69,6 @@ export default {
   },
   computed: {},
   methods: {
-    //判断是否只有一个子路由。
-    hasOneShowChild(item) {
-      if (!item.children) {
-        // this.menuItem = item;
-        return true;
-      }
-      // if (item.children.length == 1) {
-      // this.menuItem = item.children[0];
-      // this.menuItem.meta.icon = item.meta.icon;
-      // this.hasOneShowChild(this.menuItem);
-      // return true;
-      // }
-      // this.menuItem = item;
-      return false;
-    },
     hasOneShowingChild(children = [], parent) {
       const showingChildren = children.filter(item => {
         if (item.meta.hidden) {

@@ -19,13 +19,13 @@ export default {
   props: {},
   data() {
     return {
-      levelList: null,
+      levelList: null
     };
   },
   watch: {
     $route() {
       this.getBreadcrumb();
-    },
+    }
   },
   computed: {},
   methods: {
@@ -33,7 +33,7 @@ export default {
     getBreadcrumb() {
       // $route.matched一个数组，包含当前路由的所有嵌套路径片段的路由记录 。
       this.levelList = this.$route.matched.filter(
-        (item) => item.meta && item.meta.title && item.meta.breadcrumb !== false
+        item => item.meta && item.meta.title && item.meta.breadcrumb !== false
       );
     },
     cutRoute(item) {
@@ -46,12 +46,12 @@ export default {
       } else {
         this.$router.push(item.path);
       }
-    },
+    }
   },
   created() {
     this.getBreadcrumb();
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>

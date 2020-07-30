@@ -50,8 +50,11 @@ function updataUser(params) {
   let userIndex = user.findIndex(item => item.userName == newUser.userName);
   let userInfo = user.find(item => item.userName == newUser.userName);
   let newRole = role.find(item => newUser.role == item.role);
-  userInfo = { ...userInfo, ...{ role: newRole.role, roleName: newRole.roleName } }
-  user[userIndex] = userInfo
+  userInfo = {
+    ...userInfo,
+    ...{ role: newRole.role, roleName: newRole.roleName }
+  };
+  user[userIndex] = userInfo;
   return {
     userInfo,
     code: 0

@@ -27,7 +27,7 @@ export default {
   components: {
     Headers,
     Sidebar,
-    NavBar,
+    NavBar
   },
   props: {},
   data() {
@@ -38,8 +38,8 @@ export default {
     ...mapGetters(["isCollapse"]),
     key() {
       return this.$router.path;
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

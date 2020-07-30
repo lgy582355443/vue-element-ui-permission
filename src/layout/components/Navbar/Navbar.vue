@@ -17,7 +17,7 @@ export default {
   name: "NavBar",
   mixins: [layoutMixin],
   components: {
-    NavBreadcrumb,
+    NavBreadcrumb
   },
   props: {},
   data() {
@@ -28,10 +28,10 @@ export default {
   methods: {
     closeNav() {
       this.setCollapse(!this.isCollapse);
-    },
+    }
   },
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
